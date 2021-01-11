@@ -1,0 +1,85 @@
+1.写出自己理解的原型和原型链
+原型：每一个JS对象（null除外）在创建的时候都会关联到另一个对象，这个对象就是我们说的原型，每个对象都会从原型“继承”属性。
+--proto--,这是每一个JS对象都聚偶的属性，叫--proto--，这个属性会指向该对象的原型。
+constructor,每个原型都有一个constructor属性指向关联的构造函数。
+原型链：读取实例的属性时，如果找不到，就从原型对象中查找，还找不到，就去找原型的原型，一直找到顶层为止。
+2.function y(num) {
+    console.log(num);
+    var num = 1;
+    console.log(num);
+    console.log(fn);
+    var fn = function() {
+       console.log(1);
+   }
+   console.log(fn);
+   function fn(){
+       console.log(2);
+   }
+   console.log(fn);
+}
+y(2);
+答案：2
+1
+f fn(){
+ console.log(2);
+}
+f (){
+ console.log(1);
+}
+f (){
+ console.log(1);
+}
+undefined
+
+3.function y() {
+    console.log(num);
+    var num = 1;
+    console.log(num);
+    function num() { console.log(3); }
+    function num() { console.log(5); }
+    console.log(num);
+}
+y();
+答案：f num(){ console.log(5);}
+1
+1
+undefined
+
+4.function y() {    
+    var num = 1;
+    console.log(num);
+    function num() { console.log(3); }
+    console.log(num);
+}
+y();
+答案：1
+1
+undefined
+
+5.for(var i = 0;i<10;i++){ 
+	setTimeout(()=>{ console.log(i); },100);
+ }
+答案：for(var i=0;i<=9;i++){
+console.log(i);
+}
+C#
+for(var i=0;i<=9;i++){
+console.write(i);
+}
+
+
+6.密码必须为6-15位的数字、字母、_-的组合。请使用正则表达式验证。
+$pattern='/^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,15}$/'
+$pattern='/^[\w-\.]{6,15}$/';
+
+7.//注意审题
+function A() {}
+function B() {}
+B.prototype = Object.create(A.prototype);
+B.prototype.constructor = B;
+function C() {}
+C.prototype = Object.create(B.prototype);
+C.prototype.constructor = C;
+
+var c1 = new C();
+c1.prototype === C1.prototype ?
